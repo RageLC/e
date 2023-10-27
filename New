@@ -1,0 +1,49 @@
+import pygame
+import sys
+import random
+
+# Initialize Pygame
+pygame.init()
+
+# Set the dimensions of the window
+width, height = 400, 300
+
+# Create a window
+window = pygame.display.set_mode((width, height))
+
+# Define the initial properties of the circle
+circle_center = (200, 150)
+circle_radius = 50
+
+# Variables to track the current color
+circle_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+# Variables to control color change
+color_change_interval = 1000  # Change color every 1000 milliseconds
+last_color_change_time = pygame.time.get_ticks()
+
+# Game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Check if it's time to change the color
+    current_time = pygame.time.get_ticks()
+    if current_time - last_color_change_time >= color_change_interval:
+        circle_color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        last_color_change_time = current_time
+
+    # Clear the screen
+    window.fill((0, 0, 0))  # Fill with black
+
+    # Draw the circle with the current color
+    pygame.draw.circle(window, circle_color, circle_center, circle_radius)
+
+    # Update the display
+    pygame.display.flip()
+
+# Quit Pygame
+pygame.quit()
+sys.exit()
