@@ -1,0 +1,38 @@
+import pygame
+
+# Initialize Pygame
+pygame.init()
+
+# Set the dimensions of the window
+width, height = 400, 300
+
+# Create a window
+window = pygame.display.set_mode((width, height))
+
+# Set the color of the rectangle (RGB format)
+rectangle_color = (255, 0, 0)  # Red
+
+# Define the dimensions and position of the rectangle
+rectangle_width = 100
+rectangle_height = 50
+x_position = 150
+y_position = 100
+
+# Game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Clear the screen
+    window.fill((0, 0, 0))  # Fill with black
+
+    # Draw the rectangle on the screen
+    pygame.draw.rect(window, rectangle_color, (x_position, y_position, rectangle_width, rectangle_height))
+
+    # Update the display
+    pygame.display.flip()
+
+# Quit Pygame
+pygame.quit()
